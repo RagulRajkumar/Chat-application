@@ -1,0 +1,6 @@
+<% if message.sender == current_user %>
+  <p style="padding-left: 200px" ><%= message.message %></p>
+<% else %>
+  <p><%= message.message %></p>
+<% end %>
+

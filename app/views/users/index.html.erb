@@ -1,0 +1,22 @@
+<h1>Users</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>User Email</th>
+    <th>User Name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.email.split('@')[0].capitalize %></td>
+        <td><%= link_to "Chat", chat_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

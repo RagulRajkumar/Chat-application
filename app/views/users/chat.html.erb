@@ -1,0 +1,18 @@
+<h1>Chat</h1>
+<h4><%= @user.email.split('@')[0].capitalize %></h4>
+<%= link_to "Back to Users", users_path %>
+
+<!--Render form-->
+<%= render partial: "messages/message", collection: @messages %>
+<!--end-->
+
+<!--Message form field-->
+
+<%= form_with model: Message.new, url: messages_path, remote: true do |form| %>
+  <%= form.hidden_field :receiver_id, value: @user.id %>
+  <%= form.text_field :message %>
+  <%= form.submit "Send" %>
+<% end %>
+<br>
+
+<!--end-->
