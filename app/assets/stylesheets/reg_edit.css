@@ -1,0 +1,11 @@
+.card-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card{
+    display: inline-flex; /* or display: inline-flex; */
+    overflow: auto;
+    align-items: center;
+    box-shadow: 0 2px 5px #946af3;
+}

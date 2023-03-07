@@ -1,22 +1,47 @@
-<h1>Users</h1>
+<%= stylesheet_link_tag 'user_index' %>
+<div class="index">
+  <h1 class="head">Users</h1>
+  <div class="form">
+    <%= form_for(users_path, method: :get) do %>
+      <div class="form_search  input-group mb-3">
+        <%= text_field_tag :search, params[:search], placeholder: "Search users",class: "form-control" %>
+        <span class="input-group-text " id="basic-addon2"><%= submit_tag "Search" %></span>
+      </div>
+    <% end %>
+  </div>
 
-<table>
-  <thead>
-  <tr>
-    <th>User Email</th>
-    <th>User Name</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>User Email</th>
+      <th>User Name</th>
+      <th>Action</th>
+      <% if params[:search].present? %>
+        <th>Sent messages</th>
+        <th>Received messages</th>
+        <th>Total messages</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
         <td><%= user.email.split('@')[0].capitalize %></td>
-        <td><%= link_to "Chat", chat_user_path(user) %></td>
+        <td><%= link_to "Chat", chat_user_path(user) ,class:"btn btn-primary"%></td>
+        <% if params[:search].present? %>
+          <td><%= current_user.sent_messages.where(receiver_id: user.id).count %></td>
+          <td><%= current_user.received_messages.where(sender_id: user.id).count %></td>
+          <td><%= current_user.sent_messages.where(receiver_id: user.id).count + current_user.received_messages.where(sender_id: user.id).count %></td>
+        <% end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
+<span class="paginate">
+  <%= will_paginate @users,:page_links => false%>
+</span>
 

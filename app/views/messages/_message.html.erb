@@ -1,6 +1,7 @@
+<%= stylesheet_link_tag 'chat' %>
 <% if message.sender == current_user %>
-  <p style="padding-left: 200px" ><%= message.message %></p>
+  <p  class="msg_send" style="color: #946af3" ><%= message.message %></p>
 <% else %>
-  <p><%= message.message %></p>
+  <p style="color: #B00100"><%= message.message %></p>
 <% end %>
 

@@ -1,0 +1,11 @@
+
+.index{
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.paginate{
+    position: fixed;
+    bottom: 1px;
+    left: 42.5%;
+}

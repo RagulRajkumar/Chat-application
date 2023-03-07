@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'profile.css' %>
+<div class="card" style="width: 500px">
+  <div>
+    <strong>Email:</strong>
+    <%= current_user.email %>
+  </div>
+
+  <div>
+    <%= link_to "Destroy account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %> |
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <!--              /* Edit Profile Button */-->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProductCreateModal">
+    Edit Profile
+  </button>
+</div>
+  <!--              Edit profile form-->
+  <div class="modal fade" id="ProductCreateModal" tabindex="-1" aria-labelledby="ProductCreateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ProductCreateModalLabel">Edit Profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <%= render partial: 'devise/registrations/edit', locals: {user: current_user}%>
+      </div>
+    </div>
+  </div>
+  <!--              form end-->
+
+<%= link_to "Back to Users", users_path %>

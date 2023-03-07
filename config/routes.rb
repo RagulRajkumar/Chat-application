@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'messages/create'
   devise_for :users
+  get '/profile'=>'users#profile'
   resources :users do
     member do
       get :chat
+      # get :profile
     end
   end
   root to: "users#index"

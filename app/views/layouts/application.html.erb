@@ -8,24 +8,42 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
 
   <body>
-  <div>
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>
-      <%= link_to 'Edit profile', edit_user_registration_path %>
-      <br>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> |
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
-  </div>
-  <hr>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <div>
+      <nav>
+        <ul style="color: #fff;font-family: 'Tilt Prism', cursive;">
+          <li><h3 class="title" style="padding:5px">Chat Application</h3></li>
+          <% if user_signed_in? %>
+            <li style="float: right;padding: 10px"><%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-light" %></li>
+            <li style="float: right;padding: 3px"><%= link_to 'Show profile', profile_path %></li>
+            <li style="float: right;padding: 3px"><a><%= current_user.email.split('@')[0].capitalize %></a></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Login", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
 
-  <%= yield %>
+      <div>
+
+
+        <% if notice.present? %>
+          <div class="alert alert-success" role="alert">
+            <p id="notice"><%= notice%></p>
+          </div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="alert alert-danger" role="alert">
+            <p id="alert"><%= alert %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= yield %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 </html>

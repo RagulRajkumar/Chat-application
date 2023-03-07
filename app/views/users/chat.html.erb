@@ -1,18 +1,31 @@
-<h1>Chat</h1>
-<h4><%= @user.email.split('@')[0].capitalize %></h4>
-<%= link_to "Back to Users", users_path %>
+<%= stylesheet_link_tag 'chat.css' %>
+<div style="margin: 20px">
+  <h4><%= @user.email.split('@')[0].capitalize %></h4>
+  <%= link_to "Back to Users", users_path %>
+</div>
 
-<!--Render form-->
-<%= render partial: "messages/message", collection: @messages %>
-<!--end-->
+<div class="chat card">
+<!--  <h3>Chat</h3>-->
 
-<!--Message form field-->
 
-<%= form_with model: Message.new, url: messages_path, remote: true do |form| %>
-  <%= form.hidden_field :receiver_id, value: @user.id %>
-  <%= form.text_field :message %>
-  <%= form.submit "Send" %>
-<% end %>
-<br>
+  <div class="msg">
+    <!--Render form-->
+    <%= render partial: "messages/message", collection: @messages %>
+    <!--end-->
+  </div>
 
-<!--end-->
+
+  <!--Message form field-->
+
+  <div class="msg_form">
+    <%= form_with model: Message.new, url: messages_path, remote: true do |form| %>
+      <%= form.hidden_field :receiver_id, value: @user.id %>
+      <div class="form_input  input-group mb-3">
+        <%= form.text_field :message,class: "form-control" %>
+        <span class="input-group-text " id="basic-addon2"><%= form.submit "Send" %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <!--end-->
+</div>

@@ -1,0 +1,71 @@
+.chat{
+    /*width: 100vw;*/
+    /*height: 75vh;*/
+    margin: 10px;
+    /*position: fixed;*/
+    left: 0;
+    overflow-y: scroll;
+    height: 50vh;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+.msg_send{
+    padding-left: 1000px;
+    float: right;
+}
+msg{
+    width: 90vw;
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+.msg_form{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    #padding: 10px;
+    background-color: transparent;
+    #box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+@media only screen and (max-width: 1100px) {
+.msg_send{
+    padding-left: 800px;
+}
+}
+@media only screen and (max-width: 900px) {
+    .msg_send{
+        padding-left: 600px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .msg_send{
+        padding-left: 400px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .msg_send{
+        padding-left: 200px;
+    }
+}
